@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webgazer</title>
+</head>
+
+<body>
+
+    <style>
+        body{
+            background-image: url('test.svg');
+        }
+        
+        button {
+            float: right !important;
+        }
+
+    </style>
+
+    <div onclick="saveGaze()">
+        <button>Save</button>
+    </div>
+
+    <div onclick="webgazer.resume()">
+        <button>Resume</button>
+    </div>
+
+    <div onclick="webgazer.pause()">
+        <button>Pause</button>
+    </div>
+
+    <div onclick="recordGaze()">
+        <button>Start</button>
+    </div>
+
+    <script>
+        var x = [];
+        // var y = [];
+
+        function recordGaze() {
+            webgazer.setGazeListener(function (data, elapsedTime) {
+                if (data == null) {
+                    return;
+                }
+                var xprediction = data.x; 
+                var yprediction = data.y;
+                // console.log(elapsedTime); //elapsed time is based on time since begin was called
+                x.push([xprediction, yprediction]);
+                // y.push(yprediction);
+                console.log(xprediction + "," + yprediction);
+                // console.log(yprediction);
+            }).begin();
+        }
+
+        function saveGaze() {
+            console.log(x);
+            // console.log(y);
+
+            var csv = '';
+            x.forEach(function (row) {
+                csv += row.join(',');
+                csv += "\n";
+            });
+
+
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'gazeData.csv';
+            hiddenElement.click();
+        }
+    </script>
+    <!-- 
+        var prediction = webgazer.getCurrentPrediction();
+        if (prediction) {
+        var x = prediction.x;
+        var y = prediction.y;
+        }
+    -->
+</body>
+
+
+<script src="webgazer.js" type="text/javascript">
+</script>
+
+</html>
