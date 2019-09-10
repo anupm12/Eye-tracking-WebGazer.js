@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- bootstrap cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" integrity="sha256-Nfu23DiRqsrx/6B6vsI0T9vEVKq1M6KgO8+TV363g3s=" crossorigin="anonymous" />
+
     <title>Webgazer</title>
 </head>
 
@@ -17,24 +21,25 @@
         
         button {
             float: right !important;
+            margin: 3px;
         }
 
     </style>
 
-    <div onclick="saveGaze()">
-        <button>Save</button>
+    <div onclick="saveGaze()" class="ml-auto">
+        <button class="btn btn-light">Save</button>
     </div>
 
     <div onclick="webgazer.resume()">
-        <button>Resume</button>
+        <button class="btn btn-light">Resume</button>
     </div>
 
     <div onclick="webgazer.pause()">
-        <button>Pause</button>
+        <button class="btn btn-light">Pause</button>
     </div>
 
     <div onclick="recordGaze()">
-        <button>Start</button>
+        <button class="btn btn-light">Start</button>
     </div>
 
     <script>
