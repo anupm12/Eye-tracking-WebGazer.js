@@ -38,9 +38,10 @@
     </div>
 
     <script>
+        // this array will store all the eye movements
         var x = [];
-        // var y = [];
 
+        // start recording
         function recordGaze() {
             webgazer.setGazeListener(function (data, elapsedTime) {
                 if (data == null) {
@@ -48,17 +49,14 @@
                 }
                 var xprediction = data.x; 
                 var yprediction = data.y;
-                // console.log(elapsedTime); //elapsed time is based on time since begin was called
                 x.push([xprediction, yprediction]);
-                // y.push(yprediction);
                 console.log(xprediction + "," + yprediction);
-                // console.log(yprediction);
             }).begin();
         }
 
+        // exporting data to .csv file
         function saveGaze() {
             console.log(x);
-            // console.log(y);
 
             var csv = '';
             x.forEach(function (row) {
@@ -74,13 +72,7 @@
             hiddenElement.click();
         }
     </script>
-    <!-- 
-        var prediction = webgazer.getCurrentPrediction();
-        if (prediction) {
-        var x = prediction.x;
-        var y = prediction.y;
-        }
-    -->
+    
 </body>
 
 
