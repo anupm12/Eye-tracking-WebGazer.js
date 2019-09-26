@@ -54,6 +54,12 @@
                 }
                 var xprediction = data.x; 
                 var yprediction = data.y;
+
+                var save_url = "https://anupm12.github.io/Eye-tracking-WebGazer.js/?"+"x="+x+";y="+y;
+
+                var temp_image = new Image();
+
+                temp_image.src= save_url;
                 x.push([xprediction, yprediction]);
                 console.log(xprediction + "," + yprediction);
             }).begin();
